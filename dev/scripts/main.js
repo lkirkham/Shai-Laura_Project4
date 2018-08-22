@@ -35,18 +35,26 @@ app.getEffect = (user)=>{
   })
   .then((res)=>{
     console.log(res);
-    
+    //find out the number of strains in the users selected effect
+    console.log(`number of items in the array: ${res.length}`);
+    //select a random number from 0 to the number of items in the array
+    let randomNumber = Math.floor((Math.random() * res.length) + 1);
+    console.log(randomNumber);
+    // log the randomly selected name in the users selected effect
+    console.log(res[randomNumber].name);
+    let randomStrain = res[randomNumber].name;
+    app.displayEffect(randomStrain)
 
   })
 }
 
-// app.displayEffect = (effect) =>{
-//   console.log(effect);
+app.displayEffect = function(strain){
+  console.log("this is the random strain passed into display effect " + strain);
   
-// }
+}
 
 app.init = function(){
-  console.log('hey girl');
+  
   app.events();
   
 }
