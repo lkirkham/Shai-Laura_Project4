@@ -86,3 +86,12 @@ app.init = function () {
 $(function () {
   app.init();
 });
+
+
+// inside we want to put a varauble inside [] of our array
+// variable will generate random number that will go into []
+// para 0 - end of array -1
+// array.length 
+// res.length 
+// random nubemer = Math.floor(Math.random)()*res.length 
+// for(let item = 0; item > res.length > item++)
