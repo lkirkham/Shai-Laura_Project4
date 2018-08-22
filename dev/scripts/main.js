@@ -35,15 +35,23 @@ app.getEffect = (user)=>{
   })
   .then((res)=>{
     console.log(res);
+    // console.log(res[this].name);
+    let randomNumber = (Math.floor(Math.random() * res.length) + 1);
+    console.log(randomNumber);
     
-
-  })
+    let randomStrain = res[randomNumber].name;
+    app.displayEffect(randomStrain);
+    //console.log(randomStrain);
+    
+  });
 }
 
-// app.displayEffect = (effect) =>{
-//   console.log(effect);
+app.displayEffect = function(strain){
+   //let item = Math.floor(Math.random)*userSelection[item].length;
+   console.log(strain);
+
   
-// }
+}
 
 app.init = function(){
   console.log('hey girl');
@@ -54,3 +62,12 @@ app.init = function(){
 $(function(){
   app.init();
 });
+
+
+// inside we want to put a varauble inside [] of our array
+// variable will generate random number that will go into []
+// para 0 - end of array -1
+// array.length 
+// res.length 
+// random nubemer = Math.floor(Math.random)()*res.length 
+// for(let item = 0; item > res.length > item++)
