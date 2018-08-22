@@ -57,6 +57,8 @@ app.getEffect = (user) => {
         strains15.push(randomStrain);
       }
       console.log(strains15)
+      // we are calling the app.displayEffects and passing through
+      // the array
       app.displayEffect(strains15)
 
     })
@@ -64,16 +66,21 @@ app.getEffect = (user) => {
 
 app.displayEffect = function(strainsArray){
   console.log("this is the random strains array passed into display effect " + strainsArray);
+  // we created a for loop to go through the length of the array
+  // create html card for each item [i]
   
-  
+  for(let i = 0;i < strainsArray.length; i++){
+  // we inserted a template literal with the [i] into the card
+  // displaying a differnt strain name
   $('.resultsContainer').append(`<div class="card">
   <div class="cardTop">
   <figure></figure>
   </div>
   <div class="cardBottom">
-  <h3 class="strainName">${strainsArray[0]}</h3>
+  <h3 class="strainName">${strainsArray[i]}</h3>
   </div>
   </div>`)
+  }
 
 }
 
