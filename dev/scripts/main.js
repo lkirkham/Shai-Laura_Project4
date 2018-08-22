@@ -10,25 +10,46 @@
 //name photo and 
 
 const app = {}
-app.apiURL = 'http://strainapi.evanbusse.com/'
+app.apiUrl = 'http://strainapi.evanbusse.com/'
 app.apiKey = 'OcnJg8N'
 app.searchQueryEffect = '/strains/search/effect/'
 
-
+app.userChoice = () => {
 $('form').on('submit', function(e){
   e.preventDefault();
   console.log('did this work?');
   const userSelection = $('option:selected').val();
   console.log(userSelection);
+  app.getEffect(userSelection);
 })
+}
 
+app.getEffect = (user)=>{
+  console.log(user);
+  
+  $.ajax({
+    url:`${app.apiUrl}${app.apiKey}${app.searchQueryEffect}user`,
+    method:'GET',
+    dataType:'json'
+  })
+  .then((res)=>{
+    console.log(res.name);
+    
 
+  })
+}
 
-// app.getEffect = (query) => {
+// app.displayEffect = (effect) =>{
+//   console.log(effect);
+  
+// }
 
-//     //use $.ajax to make our request to the server
-//     $.ajax({
-//       url: `${app.apiURL}${app.apiKey}${app.searchQueryEffect}`,
-//       method: 'GET',
-//       dataType: 'json'
-//     });
+app.init = function(){
+  console.log('hey girl');
+  app.userChoice();
+  
+}
+
+$(function(){
+  app.init();
+});
