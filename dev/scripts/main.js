@@ -19,6 +19,8 @@ app.searchQueryName = '/strains/search/name/'
 
 let userSelection = ''
 let strains15 = [];
+let descript15 = [];
+let descriptResponse = '' 
 
 app.events = () => {
   $('form').on('submit', function (e) {
@@ -80,12 +82,29 @@ app.getEffect = (user) => {
         .then((...responses) => {
           console.log(responses);
           responses = responses.map((item) => {
-            return item[0]
+            return item[0][0] 
           });
-          console.log(responses)
 
-          //LEFT OFF HERE
-          // const strainDescriptions = responses[0].filter((desc) =>{
+        //  descript15 = [];
+        //   for (let i = 0;  i < responses.length; i++ ){
+        //     descript15.push(response.desc);
+        //   }
+  
+           descriptResponse = responses.forEach((response) => {
+           // console.log(response.desc)
+           descript15.push(response.desc);
+          })
+
+          //console.log(descript15);
+          
+          // const strainsDescriptions = responses.filter((des)=>{
+          //   return des.desc;
+          // });
+          // console.log(strainsDescription);
+          
+
+          // LEFT OFF HERE
+          // const strainDescriptions = responses.filter(responses[item].desc) =>{
           //   console.log(strainDescriptions)
           // })
         });
@@ -94,15 +113,32 @@ app.getEffect = (user) => {
 
       // we are calling the app.displayEffects and passing through
       // the array
-      app.displayEffect(strains15)
+      app.displayEffect(strains15, descript15)
+      
 
     })
 }
 
-app.displayEffect = function (strainsArray) {
+app.displayEffect = function (strainsArray, descArray) {
   // console.log("this is the random strains array passed into display effect " + strainsArray);
   // we created a for loop to go through the length of the array
   // create html card for each item [i]
+  //console.log(`this is working ${descArray}`);
+  console.log(strainsArray, descArray);
+  for (let i = 0; i < descArray.length; i++) {
+    // we inserted a template literal with the [i] into the card
+    // displaying a differnt strain name
+    $('.resultsContainer').append(`<div class="card">
+  <div class="cardTop">
+  <figure></figure>
+  </div>
+  <div class="cardBottom">
+  <h3 class="strainName">${descArray[i]}</h3>
+  </div>
+  </div>`)
+  }
+  
+  
 
   for (let i = 0; i < strainsArray.length; i++) {
     // we inserted a template literal with the [i] into the card
