@@ -107,13 +107,14 @@ app.getEffect = (user) => {
           // const strainDescriptions = responses.filter(responses[item].desc) =>{
           //   console.log(strainDescriptions)
           // })
+          app.displayEffect(strains15, descript15)
         });
 
 
 
       // we are calling the app.displayEffects and passing through
       // the array
-      app.displayEffect(strains15, descript15)
+     
       
 
     })
@@ -124,6 +125,20 @@ app.displayEffect = function (strainsArray, descArray) {
   // we created a for loop to go through the length of the array
   // create html card for each item [i]
   //console.log(`this is working ${descArray}`);
+
+  for (let i = 0; i < strainsArray.length; i++) {
+    // we inserted a template literal with the [i] into the card
+    // displaying a differnt strain name
+    $('.resultsContainer').append(`<div class="card">
+  <div class="cardTop">
+  <figure></figure>
+  </div>
+  <div class="cardBottom">
+  <h3 class="strainName">${strainsArray[i]}</h3>
+  </div>
+  </div>`)
+  }
+  
   console.log(strainsArray, descArray);
   for (let i = 0; i < descArray.length; i++) {
     // we inserted a template literal with the [i] into the card
@@ -140,18 +155,7 @@ app.displayEffect = function (strainsArray, descArray) {
   
   
 
-  for (let i = 0; i < strainsArray.length; i++) {
-    // we inserted a template literal with the [i] into the card
-    // displaying a differnt strain name
-    $('.resultsContainer').append(`<div class="card">
-  <div class="cardTop">
-  <figure></figure>
-  </div>
-  <div class="cardBottom">
-  <h3 class="strainName">${strainsArray[i]}</h3>
-  </div>
-  </div>`)
-  }
+ 
 
 }
 
