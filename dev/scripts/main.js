@@ -15,23 +15,34 @@ app.apiKey = 'OcnJg8N'
 app.searchQueryEffect = '/strains/search/effect/'
 app.searchQueryName = '/strains/search/name/'
 
-
-
 let userSelection = ''
 let strains15 = [];
 let descript15 = [];
-let descriptResponse = '' 
+let descriptResponse = ''
+
 
 app.events = () => {
-  $('form').on('submit', function (e) {
+  $('li').on('click', function (e) {
     e.preventDefault();
+//TRIAL
+    $('.effects .selected').removeClass('selected');
+    $('.effects label').attr('value', $(this).attr('value'));
+
+   
+    
+    if ($(this).is('#clear')) {
+      $('.effects label').text($(this).attr('value'));
+    } else {
+      $(this).addClass('selected');
+      $('.effects label').text($(this).text());
+    }
+//TRIAL
     // console.log('did this work?');
-    userSelection = $('option:selected').val();
+    userSelection = $(this).attr('value');
     // console.log(userSelection);
     app.getEffect(userSelection);
   })
 }
-
 
 
 app.getEffect = (user) => {
@@ -43,7 +54,6 @@ app.getEffect = (user) => {
     })
     .then((res) => {
       console.log(res);
-
       //find out the number of strains in the users selected effect
       console.log(`number of items in the array: ${res.length}`);
       //select a random number from 0 to the number of items in the array
@@ -52,9 +62,7 @@ app.getEffect = (user) => {
       // log the randomly selected name in the users selected effect
       console.log(res[randomNumber].name);
 
-
       let randomStrain = res[randomNumber].name;
-
       strains15 = [];
       //make an array with 15 random strains generated from the users chosen effect.
       for (let i = 0; i < 14; i++) {
@@ -64,9 +72,11 @@ app.getEffect = (user) => {
         console.log(randomStrain);
         strains15.push(randomStrain);
       }
+
       //this is a randomly generated array of 15 strains in the users chosen effect category.
       console.log(strains15);
-      
+
+
       const getDescription = (name) => {
         return $.ajax({
           url: `${app.apiUrl}${app.apiKey}${app.searchQueryName}${name}`,
@@ -75,49 +85,29 @@ app.getEffect = (user) => {
           dataType: 'json',
         });
       }
+
       const descriptionRequests = strains15.map(getDescription)
-
-
       $.when(...descriptionRequests)
         .then((...responses) => {
           console.log(responses);
           responses = responses.map((item) => {
-            return item[0][0] 
+            return item[0][0]
           });
 
-        //  descript15 = [];
-        //   for (let i = 0;  i < responses.length; i++ ){
-        //     descript15.push(response.desc);
-        //   }
-  
-           descriptResponse = responses.forEach((response) => {
-           // console.log(response.desc)
-           descript15.push(response.desc);
+
+
+          descriptResponse = responses.forEach((response) => {
+            // console.log(response.desc)
+            descript15.push(response.desc);
           })
 
-          //console.log(descript15);
-          
-          // const strainsDescriptions = responses.filter((des)=>{
-          //   return des.desc;
-          // });
-          // console.log(strainsDescription);
-          
 
-          // LEFT OFF HERE
-          // const strainDescriptions = responses.filter(responses[item].desc) =>{
-          //   console.log(strainDescriptions)
-          // })
+          app.displayEffect(strains15, descript15)
         });
+      })
+  }
 
 
-
-      // we are calling the app.displayEffects and passing through
-      // the array
-      app.displayEffect(strains15, descript15)
-      
-
-    })
-}
 
 app.displayEffect = function (strainsArray, descArray) {
   // console.log("this is the random strains array passed into display effect " + strainsArray);
@@ -125,51 +115,57 @@ app.displayEffect = function (strainsArray, descArray) {
   // create html card for each item [i]
   //console.log(`this is working ${descArray}`);
   console.log(strainsArray, descArray);
-  for (let i = 0; i < descArray.length; i++) {
-    // we inserted a template literal with the [i] into the card
-    // displaying a differnt strain name
-    $('.resultsContainer').append(`<div class="card">
-  <div class="cardTop">
-  <figure></figure>
-  </div>
-  <div class="cardBottom">
-  <h3 class="strainName">${descArray[i]}</h3>
-  </div>
-  </div>`)
-  }
-  
-  
 
   for (let i = 0; i < strainsArray.length; i++) {
     // we inserted a template literal with the [i] into the card
     // displaying a differnt strain name
     $('.resultsContainer').append(`<div class="card">
-  <div class="cardTop">
-  <figure></figure>
-  </div>
-  <div class="cardBottom">
-  <h3 class="strainName">${strainsArray[i]}</h3>
-  </div>
-  </div>`)
+    <div class="cardTop">
+    <figure class="cardImage"><img src="assets/leaf.png" alt="cannabis leaf"></figure>
+    </div>
+    <div class="cardBottom">
+    <h3 class="strainName">${strainsArray[i]}</h3>
+    <div class="expand"><i class = "fas fa-plus-circle"></i></div>
+    </div>
+    </div>`)
   }
 
+  // for (let i = 0; i < descArray.length; i++) {
+  //   // we inserted a template literal with the [i] into the card
+  //   // displaying a differnt strain name
+  //   $('.resultsContainer').append(`<div class="card">
+  // <div class="cardTop">
+  // <figure></figure>
+  // </div>
+  // <div class="cardBottom">
+  // <h3 class="strainName">${descArray[i]}</h3>
+  // </div>
+  // </div>`)
+  // }
 }
+
 
 app.init = function () {
-
   app.events();
-
 }
+
 
 $(function () {
   app.init();
 });
 
 
-// inside we want to put a varauble inside [] of our array
-// variable will generate random number that will go into []
-// para 0 - end of array -1
-// array.length 
-// res.length 
-// random nubemer = Math.floor(Math.random)()*res.length 
-// for(let item = 0; item > res.length > item++)
+// TRIAL
+// $(".effects li").click(function () {
+//   $(".effects .selected").removeClass('selected');
+//   $(".effects label").attr('value', $(this).attr('value'));
+//   if ($(this).is("#clear")) {
+//     $(".effects label").text($(this).attr('value'));
+//   } else {
+//     $(this).addClass('selected');
+//     $(".effects label").text($(this).text());
+//   }
+// });
+
+
+// TRIAL
