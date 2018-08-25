@@ -125,7 +125,7 @@ app.displayEffect = function (strainsArray, descArray) {
     </div>
     <div class="cardBottom">
     <h3 class="strainName">${strainsArray[i]}</h3>
-    <div class="expand"><i class = "fas fa-plus-circle"></i></div>
+    <div class="expand"><a><i class = "fas fa-plus-circle"></i></a></div>
     </div>
     </div>`)
 
@@ -135,10 +135,14 @@ app.displayEffect = function (strainsArray, descArray) {
       i++;
     });
 
-  }
-  
+    let s = 1
+    $('.expand').each(function () {
+      $(this).addClass('toggle' + s);
+      s++;
+    });
 
-  // for (let i = 0; i < descArray.length; i++) {}
+
+  }
     // we inserted a template literal with the [i] into the card
     // displaying a differnt strain name
 
@@ -147,23 +151,29 @@ app.displayEffect = function (strainsArray, descArray) {
     for (let i = 0; i < descArray.length; i++) {
       // we inserted a template literal with the [i] into the card
       // displaying a differnt strain name
-      // if ( descArray[i] === null) {
-      //   return ' sorry no description'
-      // }
+      
       $('.myclass' + j).append(`
     <div class="cardDescr">
     <p>${descArray[i]}</p>
     </div>`)
       j++
 
-      // testing to see if slide up will work  
 
-      // $('expand').hide();
 
-      // $('.expand').on(click, function () {
-      //   $(this).slideup();
-      // });
+      $('.cardDescr').hide();
 
+      $('.fa-plus-circle').on('click', function(){
+        console.log("clicked")
+        $('.cardDescr').slideDown();
+        //$('.cardDescr').slideUp();
+      });
+
+
+      $('.expand').on('click', function(){
+          console.log('test');
+          
+          $('.cardDescr').hide();
+      });
     }
    
 }
