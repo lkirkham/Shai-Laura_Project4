@@ -128,21 +128,47 @@ app.displayEffect = function (strainsArray, descArray) {
     <div class="expand"><i class = "fas fa-plus-circle"></i></div>
     </div>
     </div>`)
-  }
 
-  // for (let i = 0; i < descArray.length; i++) {
-  //   // we inserted a template literal with the [i] into the card
-  //   // displaying a differnt strain name
-  //   $('.resultsContainer').append(`<div class="card">
-  // <div class="cardTop">
-  // <figure></figure>
-  // </div>
-  // <div class="cardBottom">
-  // <h3 class="strainName">${descArray[i]}</h3>
-  // </div>
-  // </div>`)
-  // }
+    let i = 1;
+    $('.card').each(function () {
+      $(this).addClass('myclass' + i);
+      i++;
+    });
+
+  }
+  
+
+  // for (let i = 0; i < descArray.length; i++) {}
+    // we inserted a template literal with the [i] into the card
+    // displaying a differnt strain name
+
+
+    let j = 1
+    for (let i = 0; i < descArray.length; i++) {
+      // we inserted a template literal with the [i] into the card
+      // displaying a differnt strain name
+      // if ( descArray[i] === null) {
+      //   return ' sorry no description'
+      // }
+      $('.myclass' + j).append(`
+    <div class="cardDescr">
+    <p>${descArray[i]}</p>
+    </div>`)
+      j++
+
+      // testing to see if slide up will work  
+
+      // $('expand').hide();
+
+      // $('.expand').on(click, function () {
+      //   $(this).slideup();
+      // });
+
+    }
+   
 }
+
+
 
 
 app.init = function () {
