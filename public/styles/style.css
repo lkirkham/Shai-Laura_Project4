@@ -36,7 +36,8 @@ a:hover {
   outline: 0; }
 
 h1 {
-  font-size: 2em; }
+  font-size: 2em;
+  font-family: 'Abril Fatface', cursive; }
 
 abbr[title] {
   border-bottom: 1px dotted; }
@@ -169,7 +170,7 @@ body {
   font-size: 1.6rem; }
 
 header {
-  height: 100vh;
+  height: 80vh;
   background-image: url(../../assets/backgroundImageCrop.jpg);
   align-items: center;
   display: flex;
@@ -192,12 +193,19 @@ h1 {
 h2, option {
   font-size: 3rem;
   font-family: 'Abril Fatface', cursive;
-  margin: 25px 0; }
+  margin: 25px 0;
+  color: #4a4a4a; }
 
 h3 {
   font-size: 1.8rem;
   font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  margin: 0;
+  color: #4a4a4a; }
+
+p {
+  color: #4a4a4a;
+  font-size: 1.4rem; }
 
 .wrapper {
   max-width: 1080px;
@@ -239,50 +247,53 @@ h3 {
 footer {
   background-color: #7c4475; }
 
-* {
-  margin: 0;
-  padding: 0; }
-
 /* Colors */
 .effects li {
-  background: #fff; }
+  margin: 0; }
   .effects li:hover {
     color: #967619; }
-  .effects li#clear {
-    background: #fff; }
-    .effects li#clear:hover {
-      background: #c0392b; }
 
 .effects label {
-  background: #fff; }
+  color: #967619; }
   .effects label:hover {
     background: #fff; }
 
 /* Dropdown Select */
 .effects {
-  width: 360px;
   margin: 0;
   padding-top: 20px;
   text-align: left;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  -webkit-flex-direction: column; }
+  flex-direction: column; }
   .effects ul {
-    list-style: none; }
+    list-style: none;
+    padding: 0; }
     .effects ul li {
-      -webkit-flex: 0 0 0;
       flex: 0 0 0;
-      transition: all .5s ease;
       font-size: 0;
       font-family: 'Abril Fatface', cursive; }
   .effects label,
   .effects:hover li {
     flex: 1 1;
-    padding: 10px 0px;
-    font-size: 3rem; }
+    padding: 0 0 0 10px;
+    font-size: 3rem;
+    font-family: 'Abril Fatface', cursive; }
+  .effects label {
+    text-decoration: underline;
+    margin-top: 5px; }
 
 .effects .selected {
-  background: #43a0de; }
-  .effects .selected:hover {
-    background: #2980b9; }
+  color: #967619 .effects .selected; }
+  .effects .selected :hover {
+    background: #967619; }
+
+.labelContainer {
+  display: flex; }
+
+.fa-angle-down {
+  font-size: 3rem;
+  padding-left: 10px; }
+
+.chevron {
+  margin-top: 15px;
+  color: #967619; }

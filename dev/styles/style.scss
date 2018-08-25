@@ -1,203 +1,4 @@
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary {
-  display: block;
-}
-
-audio,
-canvas,
-video {
-  display: inline-block;
-}
-
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-[hidden] {
-  display: none;
-}
-
-html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-a:focus {
-  outline: thin dotted;
-}
-
-a:active,
-a:hover {
-  outline: 0;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-
-b,
-strong {
-  font-weight: 700;
-}
-
-dfn {
-  font-style: italic;
-}
-
-mark {
-  background: #ff0;
-  color: #000;
-}
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, serif;
-  font-size: 1em;
-}
-
-pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-q {
-  quotes: \201C \201D \2018 \2019;
-}
-
-small {
-  font-size: 80%;
-}
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sup {
-  top: -.5em;
-}
-
-sub {
-  bottom: -.25em;
-}
-
-img {
-  border: 0;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-fieldset {
-  border: 1px solid silver;
-  margin: 0 2px;
-  padding: .35em .625em .75em;
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
-}
-
-button,
-input {
-  line-height: normal;
-}
-
-button,
-html input[type=button],
-/* 1 */
-
-input[type=reset],
-input[type=submit] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
-
-button[disabled],
-input[disabled] {
-  cursor: default;
-}
-
-input[type=checkbox],
-input[type=radio] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-input[type=search] {
-  -webkit-appearance: textfield;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-input[type=search]::-webkit-search-cancel-button,
-input[type=search]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-textarea {
-  overflow: auto;
-  vertical-align: top;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-body,
-figure {
-  margin: 0;
-}
-
-legend,
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: '';
-  clear: both;
-  height: 0;
-}
-
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+@import "partials/_setup";
 
 html {
   font-size: 62.5%;
@@ -208,7 +9,7 @@ body {
 }
 
 header {
-  height: 100vh;
+  height: 80vh;
   background-image: url(../../assets/backgroundImageCrop.jpg);
   align-items: center;
   display: flex;
@@ -217,9 +18,6 @@ header {
   background-repeat: no-repeat;
 }
 
-.query {
- 
-}
 
 .query .wrapper {
   display:flex;
@@ -240,6 +38,7 @@ h2, option {
   font-size: 3rem;
   font-family: 'Abril Fatface', cursive;
   margin: 25px 0;
+  color: #4a4a4a
 }
 
 h3 {
@@ -247,7 +46,13 @@ h3 {
   font-family: 'Montserrat',
   sans-serif;
   text-transform: uppercase;
+  margin:0;
+  color: #4a4a4a
+}
 
+p {
+  color: #4a4a4a;
+  font-size: 1.4rem;
 }
 
 
@@ -256,7 +61,84 @@ h3 {
   margin: 0 auto;
 }
 
+// SEARCH QUERY
 
+/* Colors */
+
+.effects {
+  li {
+    margin: 0;
+    &:hover {
+      color: #967619; /
+    }
+  }
+  label {
+    color: #967619;
+    &:hover {
+      background: #fff;
+    }
+  }
+}
+
+/* Dropdown Effects - with a little help from: https://codepen.io/gcampfield/pen/vErOOq  */
+
+.effects {
+  // width: 100%;
+  margin: 0;
+  padding-top: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      flex: 0 0 0; 
+      // transition: all .5s ease;
+      font-size: 0;
+      font-family: 'Abril Fatface', cursive;
+    }
+  }
+
+  label,
+  &:hover li {
+    flex: 1 1;
+    padding: 0 0 0 10px;
+    font-size: 3rem;
+    font-family: 'Abril Fatface', cursive;
+  }
+  
+  label {
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+}
+
+.effects .selected {
+  color: #967619; 
+  &:hover {
+    background: #967619;
+  }
+}
+
+.labelContainer {
+  display: flex;
+}
+
+.fa-angle-down {
+  font-size: 3rem;
+  padding-left: 10px;
+}
+
+.chevron {
+  margin-top: 15px;
+  color: #967619;
+}
+
+//TRIAL
+
+
+// SEARCH QUERY END
 //CARDS
 
 .resultsContainer {
@@ -303,87 +185,13 @@ h3 {
   font-size: 3rem;
 }
 
+// CARDS END
+
+// FOOTER
 
 footer {
   background-color: #7c4475;
 }
 
+//FOOTER END
 
-//TRIAL
-* {
-  margin: 0;
-  padding: 0;
-}
-
-// body,
-// html {
-//   height: 100%;
-//   width: 100%;
-//   background: #2c3e50;
-//   color: #ecf0f1;
-//   font-family: $font-stack;
-// }
-
-/* Colors */
-
-.effects {
-  li {
-    background: #fff;
-    &:hover {
-      color:#967619;
-      // background: #967619;
-    }
-    &#clear {
-      background: #fff;
-      &:hover {
-        background: #c0392b;
-      }
-    }
-  }
-  label {
-    background: #fff;
-    &:hover {
-      background: #fff;
-    }
-  }
-}
-
-/* Dropdown Select */
-
-.effects {
-  width: 360px;
-  margin: 0;
-  padding-top: 20px;
-  text-align: left;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  ul {
-    list-style: none;
-    li {
-      -webkit-flex: 0 0 0;
-      flex: 0 0 0;
-      transition: all .5s ease;
-      font-size: 0;
-      font-family: 'Abril Fatface', cursive;
-    }
-  }
-  label,
-  &:hover li {
-    flex: 1 1;
-    padding: 10px 0px;
-    font-size: 3rem;
-  }
-}
-
-.effects .selected {
-  background: #43a0de;
-  &:hover {
-    background: #2980b9;
-  }
-}
-
-
-
-//TRIAL
