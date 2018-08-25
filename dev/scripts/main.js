@@ -130,55 +130,71 @@ app.displayEffect = function (strainsArray, descArray) {
     </div>`)
 
     let i = 1;
-    $('.card').each(function () {
+    $('.cardBottom').each(function () {
       $(this).addClass('myclass' + i);
       i++;
     });
 
     let s = 1
     $('.expand').each(function () {
-      $(this).addClass('toggle' + s);
+      $(this).addClass('trigger' + s);
       s++;
     });
-
-
   }
-    // we inserted a template literal with the [i] into the card
-    // displaying a differnt strain name
 
 
     let j = 1
     for (let i = 0; i < descArray.length; i++) {
-      // we inserted a template literal with the [i] into the card
-      // displaying a differnt strain name
+
       
       $('.myclass' + j).append(`
-    <div class="cardDescr">
+    <div class="cardDescr" id="modal">
     <p>${descArray[i]}</p>
     </div>`)
       j++
 
 
 
+     
+
+
+  // //LEAN MODAL
+  // $('.fa-plus-circle').on('click', function(){
+  //   console.log("clicked")
+  // //   $(this).parent().parent().find('.cardDescr').slideDown();
+  // //   // $('.cardDescr').slideUp();
+  // });
+
+
+
+
       $('.cardDescr').hide();
 
+      //ALL DISCRIPTIONS APPEAR AND TOGGLE
+      // $('.fa-plus-circle').on('click', function () {
+      //   console.log("clicked")
+      //   $('.cardDescr').slideDown();
+      //   //$('.cardDescr').slideUp();
+      // });
+
+      //ONLY CLICKED DESCRIPT APPEARS, ALL BOXES TOGGLE
       $('.fa-plus-circle').on('click', function(){
         console.log("clicked")
-        $('.cardDescr').slideDown();
-        //$('.cardDescr').slideUp();
+        $(this).parent().parent().parent().find('.cardDescr').slideDown();
+        // $('.cardDescr').slideUp();
       });
 
+      // HIDE DISCRIPTIOSN WHEN CLICKED
+      $('.expand').on('click', function () {
+            console.log('test');
 
-      $('.expand').on('click', function(){
-          console.log('test');
-          
-          $('.cardDescr').hide();
+            $('.cardDescr').hide();
       });
     }
    
 }
 
-
+// $("#").leanModal();
 
 
 app.init = function () {
