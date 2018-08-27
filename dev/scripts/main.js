@@ -174,7 +174,6 @@ app.displayEffect = function (strainsArray, descArray) {
     // Expand off
     $('.expand').on('click', function () {
       console.log('test');
-
       $('.cardDescr').hide();
     });
   }
