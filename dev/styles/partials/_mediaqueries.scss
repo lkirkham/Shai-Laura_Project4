@@ -1,0 +1,100 @@
+/* MEDIA QUERY*/
+
+/* Portrait tablet and small desktops */
+
+@media (max-width: 1080px) {
+  .card {
+    flex: 1 0 calc(100% / 2 - 30px);
+    margin: 15px 15px;
+  }
+}
+
+/*end of 1080px media query*/
+
+
+/* Landscape phones and down */
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+  }
+  .query .wrapper {
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+  }
+  h2,
+  .effects:hover li,
+  .effects .labelContainer::after,
+  .effects label {
+    font-size: 2.5rem;
+  }
+  form {
+    margin: 25px 0;
+  }
+  .resultsContainer {
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .cardTop {
+    flex: 1 1 20%;
+  }
+  .cardImage {
+    height: 100px;
+    padding: 0px 20px;
+  }
+  .cardImage img {
+    width: 50px;
+  }
+  .cardBottom {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 80%;
+  }
+  .expand {
+    flex: 1;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+  }
+  .insta-container {
+    display: none;
+  }
+}
+
+@media (max-width: 637px) {
+  .query .wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  form {
+    max-width: 100%;
+  }
+  h2 {
+    margin: 40px 0 0 0;
+  }
+  .card {
+    margin: 15px 0;
+  }
+  form.effects {
+    padding: 0;
+  }
+  .cardImage {
+    padding: 0px 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  h2,
+  .effects:hover li,
+  .effects .labelContainer::after,
+  .effects label {
+    font-size: 2rem;
+  }
+}

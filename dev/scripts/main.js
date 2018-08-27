@@ -24,24 +24,29 @@ let descriptResponse = ''
 app.events = () => {
   $('li').on('click', function (e) {
     e.preventDefault();
-//TRIAL
+
     $('.effects .selected').removeClass('selected');
     $('.effects label').attr('value', $(this).attr('value'));
 
-   
-    
     if ($(this).is('#clear')) {
       $('.effects label').text($(this).attr('value'));
     } else {
       $(this).addClass('selected');
       $('.effects label').text($(this).text());
     }
-//TRIAL
+
     // console.log('did this work?');
     userSelection = $(this).attr('value');
     // console.log(userSelection);
     app.getEffect(userSelection);
+    //clear
+    $('.resultsContainer').empty();
   })
+$("#start").click(function () {
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $("#query").offset().top
+  }, 2000);
+});
 }
 
 
@@ -76,7 +81,6 @@ app.getEffect = (user) => {
       //this is a randomly generated array of 15 strains in the users chosen effect category.
       console.log(strains15);
 
-
       const getDescription = (name) => {
         return $.ajax({
           url: `${app.apiUrl}${app.apiKey}${app.searchQueryName}${name}`,
@@ -94,18 +98,15 @@ app.getEffect = (user) => {
             return item[0][0]
           });
 
-
-
           descriptResponse = responses.forEach((response) => {
             // console.log(response.desc)
             descript15.push(response.desc);
           })
 
-
           app.displayEffect(strains15, descript15)
         });
-      })
-  }
+    })
+}
 
 
 
@@ -146,78 +147,43 @@ app.displayEffect = function (strainsArray, descArray) {
     let j = 1
     for (let i = 0; i < descArray.length; i++) {
 
-      
-      $('.myclass' + j).append(`
-    <div class="cardDescr" id="modal">
+      if (descArray[i] != null) {
+        $('.myclass' + j).append(`
+    <div class="cardDescr">
     <p>${descArray[i]}</p>
     </div>`)
+      } else {
+        $('.myclass' + j).append(`
+    <div class="cardDescr">
+    <p>This strain doesn't have a description yet.</p>
+    </div>`)
+
+      }
       j++
 
+    $('.cardDescr').hide();
 
 
-     
+    //Expand on
+    $('.fa-plus-circle').on('click', function () {
+      console.log("clicked")
+      $(this).parent().parent().parent().find('.cardDescr').slideDown();
+      // $('.cardDescr').slideUp();
+    });
 
-
-  // //LEAN MODAL
-  // $('.fa-plus-circle').on('click', function(){
-  //   console.log("clicked")
-  // //   $(this).parent().parent().find('.cardDescr').slideDown();
-  // //   // $('.cardDescr').slideUp();
-  // });
-
-
-
+    // Expand off
+    $('.expand').on('click', function () {
+      console.log('test');
 
       $('.cardDescr').hide();
-
-      //ALL DISCRIPTIONS APPEAR AND TOGGLE
-      // $('.fa-plus-circle').on('click', function () {
-      //   console.log("clicked")
-      //   $('.cardDescr').slideDown();
-      //   //$('.cardDescr').slideUp();
-      // });
-
-      //ONLY CLICKED DESCRIPT APPEARS, ALL BOXES TOGGLE
-      $('.fa-plus-circle').on('click', function(){
-        console.log("clicked")
-        $(this).parent().parent().parent().find('.cardDescr').slideDown();
-        // $('.cardDescr').slideUp();
-      });
-
-      // HIDE DISCRIPTIOSN WHEN CLICKED
-      $('.expand').on('click', function () {
-            console.log('test');
-
-            $('.cardDescr').hide();
-      });
-    }
-   
+    });
+  }
 }
-
-// $("#").leanModal();
-
 
 app.init = function () {
   app.events();
 }
 
-
 $(function () {
   app.init();
 });
-
-
-// TRIAL
-// $(".effects li").click(function () {
-//   $(".effects .selected").removeClass('selected');
-//   $(".effects label").attr('value', $(this).attr('value'));
-//   if ($(this).is("#clear")) {
-//     $(".effects label").text($(this).attr('value'));
-//   } else {
-//     $(this).addClass('selected');
-//     $(".effects label").text($(this).text());
-//   }
-// });
-
-
-// TRIAL

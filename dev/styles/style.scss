@@ -1,5 +1,4 @@
 @import "partials/_setup";
-@import "partials/_mediaqueries";
 
 html {
   font-size: 62.5%;
@@ -12,30 +11,29 @@ body {
 header {
   height: 80vh;
   background-image: url(../../assets/backgroundImageCrop.jpg);
-  align-items: center;
-  display: flex;
-  justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-
-.query .wrapper {
-  display:flex;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 50px 0px;
+  align-items: center;
+   background-position: center;
 }
-
-form {
-  margin: 25px 0;
+  
+  header .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   font-size: 5rem;
   color: #fff;
+  margin:0;
 }
 
-h2, option {
+h2 {
   font-size: 3rem;
   font-family: 'Abril Fatface', cursive;
   margin: 25px 0;
@@ -44,18 +42,34 @@ h2, option {
 
 h3 {
   font-size: 1.8rem;
-  font-family: 'Montserrat',
-  sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   margin:0;
   color: #4a4a4a
 }
 
+h3.subheading {
+  color: #fff;
+  text-align:center;
+}
+
 p {
   color: #4a4a4a;
   font-size: 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
 }
 
+button {
+    font-size: 1.4rem;
+    font-family: 'Montserrat',sans-serif;
+    background-color: transparent;
+    color: #fff;
+    border: #fff solid white;
+    border-radius: 2px;
+    text-transform: uppercase;
+    padding: 10px 40px;
+}
 
 .wrapper {
   max-width: 1080px;
@@ -65,88 +79,95 @@ p {
 
 // SEARCH QUERY
 
+.query .wrapper {
+  display: flex;
+  // flex-direction: row;
+  justify-content: center;
+  padding: 50px 0px;
+  margin: 0 auto;
+}
+
+form {
+  margin: 25px 0;
+}
+
 /* Dropdown Effects - with a little help from: https://codepen.io/gcampfield/pen/vErOOq  */
 
 .effects {
-  // width: 100%;
   margin: 0;
   padding-top: 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
   ul {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     list-style: none;
     padding: 0;
     li {
       margin: 0;
       flex: 0 0 0; 
-      // transition: all .5s ease;
       font-size: 0;
       font-family: 'Abril Fatface', cursive;
-      color:#4a4a4a;
+      color: #4a4a4a;
+      padding: 0 5px;
     }
   }
-
   label,
   &:hover li {
     flex: 1 1;
-    padding: 0 0 0 10px;
     font-size: 3rem;
     font-family: 'Abril Fatface', cursive;
   }
-  
   label {
-    text-decoration: underline;
+    border-bottom: solid 1px #967619;
     margin-top: 5px;
     color: #967619;
+    padding: 0;
+  }
+  .labelContainer::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: relative;
+    color: #967619;
+    font-size: 2.8rem;
+    margin-top: 12px;
+    bottom: 0;
+    right: 0;
+    padding-left: 5px;
+    content: "\f078";
   }
 }
 
 .effects .selected {
-  color: #967619; 
-  &:hover {
-    background: #fff;
-  }
+  color: #967619;
 }
 
 .labelContainer {
   display: flex;
-}
-
-.fa-angle-down {
-  font-size: 3rem;
-  padding-left: 10px;
-}
-
-.chevron {
-  margin-top: 15px;
-  color: #967619;
-}
-
+};
 // SEARCH QUERY END
+
 
 //CARDS
 
 .resultsContainer {
-  // position: relative;
+  position: relative;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .card {
-  // border: #a4a4a4 1px solid;
+  border: #a4a4a4 1px solid;
   flex: 0 0 calc(100% / 3 - 30px);
   margin: 15px 15px;
   border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-  0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-}
-
-.card:hover{
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1); // CHANGE - removed from below and used sass nesting//
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
 }
 
 .cardImage{
@@ -168,42 +189,38 @@ p {
 }
 
 .fa-plus-circle {
-  font-size: 3rem;
+    font-size: 3rem;
+    color: #4a4a4a
+  
 }
 
+.noDescription {
+  font-weight: 900;
+}
 // CARDS END
 
 // FOOTER
-img{
-  max-width:100%;
+img {
+  max-width: 100%;
 }
-
-footer{
+footer {
   background-color: #7c4475;
-} 
-
+}
 footer img {
-  display:block;
+  display: block;
 }
-
 .insta-container {
-  display:flex;
+  display: flex;
 }
-
 footer h6 {
   margin: 0;
 }
-
-
-
-
 //FOOTER END
 
-///
+// ===========================================
+/* MEDIA QUERY*/ /* MEDIA QUERY*/ /* MEDIA QUERY*/
+// ===========================================
 
-/* MEDIA QUERY*/
-
-/* Portrait tablet and small desktops */
 @media (max-width: 1080px) {
   .card {
     flex: 1 0 calc(100% / 2 - 30px);
@@ -211,15 +228,27 @@ footer h6 {
   }
 }
 
-/*end of 1080px media query*/
-
-/* Landscape phone to portrait tablet */
-
 @media (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+  }
+  .query .wrapper {
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+  }
+  h2,
+  .effects:hover li,
+  .effects .labelContainer::after,
+  .effects label {
+    font-size: 2.5rem;
+  }
+  form {
+    margin: 25px 0;
+  }
   .resultsContainer {
-    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    align-items: stretch;
   }
   .card {
     display: flex;
@@ -230,7 +259,7 @@ footer h6 {
     flex: 1 1 20%;
   }
   .cardImage {
-    height: 100px;
+    height: 100%;
     padding: 0px 20px;
   }
   .cardImage img {
@@ -247,13 +276,42 @@ footer h6 {
     display: flex;
     align-items: flex-end;
   }
-
   .insta-container {
-    display:none;
+    display: none;
   }
-
 }
 
-/* Landscape phones and down */
+@media (max-width: 637px) {
+  .query .wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  form {
+    max-width: 100%;
+  }
+  h2 {
+    margin: 40px 0 0 0;
+  }
+  .card {
+    margin: 15px 0;
+  }
+  form.effects {
+    padding: 0;
+  }
+  .cardImage {
+    padding: 0px 10px;
+  }
+}
 
-@media (max-width: 480px) {}
+@media (max-width: 400px) {
+  h2,
+  .effects:hover li,
+  .effects .labelContainer::after,
+  .effects label {
+    font-size: 2rem;
+  }
+  .wrapper {
+    width:80%;
+  }
+}
